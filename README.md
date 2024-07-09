@@ -8,7 +8,7 @@ python3 -m venv .venv
 ```bash
 pip3 install -r requirements.txt
 ```
-## Cодержание проекта
+## Cодержание
 
 - [__Парсинг статей по категориям с сайта www.microwavejournal.com__](https://github.com/tsukerin/strategic-analysis/tree/main/practice-microwave-parsing)
 - [__Инструмент для нахождения сущностей по тегу и сохранения их в отдельный файл__](https://github.com/tsukerin/strategic-analysis/tree/main/find-by-tag)
