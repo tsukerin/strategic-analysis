@@ -29,7 +29,7 @@ def get_channels():
 def get_max_pages(id):
     res = requests.get(f'https://www.microwavejournal.com/articles/topic/{id}?page=1')
     bs = BeautifulSoup(res.text, 'html.parser')
-    return bs.find(class_='pagination').find_all('a')[-2].text
+    return int(bs.find(class_='pagination').find_all('a')[-2].text)
 
 def get_titles(bs):
     return bs.find_all(class_='headline article-summary__headline')
@@ -59,15 +59,15 @@ def parse(pages, id, name):
             continue
 
         bs = BeautifulSoup(response.text, 'html.parser')
-        titles, date, full_text, links = get_titles(bs), get_date(bs), get_full_text(bs), get_links(bs)
+        titles, dates, full_texts, links = get_titles(bs), get_date(bs), get_full_text(bs), get_links(bs)
 
         for i in range(len(titles)):
             title = titles[i].find('a').text
-            date_text = date[i].text
+            date_text = dates[i].text
             link = links[i].find('a')['href']
 
-            if i < len(full_text):
-                full_text_p = full_text[i].find('p')
+            if i < len(full_texts):
+                full_text_p = full_texts[i].find('p')
                 if full_text_p:
                     full_text_content = full_text_p.text
                 else:
@@ -76,7 +76,7 @@ def parse(pages, id, name):
                 full_text_content = "N/A"
 
             if full_text_content == "N/A":
-                entities = extract_entities(titles, nlp)
+                entities = extract_entities(title, nlp)
             else:
                 entities = extract_entities(full_text_content, nlp)
             entity_text = ", ".join([f"{ent[0]} ({ent[1]})" for ent in entities])

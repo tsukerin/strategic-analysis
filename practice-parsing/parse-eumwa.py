@@ -56,9 +56,9 @@ def parse(pages, name):
     for row in data:
         sheet.append(row)
 
-    workbook.save(f'practice-parsing/output/{name}.xlsx')
+    workbook.save(f'practice-parsing/output/eumwa.xlsx')
 
 if __name__ == '__main__':
     print('Пожалуйста, подождите...')
-    parse(2421, 'eumwa')
+    parse(50, 'eumwa')
     print(f'Парсинг завершен! Файл commission.europa.xlsx сохранен в директорию "output".')
