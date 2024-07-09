@@ -6,13 +6,13 @@ import re
 import spacy
 
 def get_titles(bs):
-    return bs.find_all('a', class_='d-block')
+    return bs.find_all('div', class_='ecl-content-block__title')
 
 def get_date(bs):
-    return bs.find_all('em', class_='vm-hub-date')
+    return bs.find_all('li', class_='ecl-content-block__primary-meta-item')
 
 def get_full_text(bs):
-    return bs.find_all('div', class_='pt-1')
+    return bs.find_all('div', class_='ecl-content-block__description')
 
 def extract_entities(text, nlp):
     doc = nlp(text)
@@ -24,7 +24,7 @@ def parse(pages, name):
     data = []
 
     for page in tqdm(range(1, pages + 1)):
-        response = requests.get(f'https://www.rfglobalnet.com/hub/bucket/feature-articles?page={page}')
+        response = requests.get(f'https://commission.europa.eu/highlighted-news_en?page={page}')
         if response.status_code != 200:
             print(f"Невозможно загрузить страницу {page}")
             continue
@@ -34,8 +34,8 @@ def parse(pages, name):
 
         for i in range(len(titles)):
             title = titles[i].text
-            date_text = dates[i].text
-            link = 'https://www.rfglobalnet.com' + titles[i]['href']
+            date_text = dates[i].find_next('time').text
+            link = 'https://commission.europa.eu' + titles[i].find('a')['href']
 
             if i < len(full_texts):
                 full_text_p = full_texts[i].find('p')
@@ -61,5 +61,5 @@ def parse(pages, name):
 
 if __name__ == '__main__':
     print('Пожалуйста, подождите...')
-    parse(10, 'rfglobalnet')
-    print(f'Парсинг завершен! Файл rfglobalnet.xlsx сохранен в директорию "output".')
+    parse(14, 'commission.europa')
+    print(f'Парсинг завершен! Файл commission.europa.xlsx сохранен в директорию "output".')
