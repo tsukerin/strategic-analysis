@@ -60,5 +60,5 @@ def parse(pages, name):
 
 if __name__ == '__main__':
     print('Пожалуйста, подождите...')
-    parse(50, 'eumwa')
+    parse(75, 'eumwa')
     print(f'Парсинг завершен! Файл commission.europa.xlsx сохранен в директорию "output".')
