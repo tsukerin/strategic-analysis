@@ -38,7 +38,7 @@ if __name__ == '__main__':
         'Interference Resistance': ['interference resistant', 'anti-interference', 'jamming resistant'],
         'Ease of Use': ['easy to use', 'user friendly', 'simple']
     }
-
+    
     os.makedirs('found-keywords', exist_ok=True)
     find_keywords_by_attrs('practice-parsing/output', attrs)
     print('Поиск ключевых слов завершен успешно! Результаты сохранены в found-keywords/attrs_keyword_counts.csv')

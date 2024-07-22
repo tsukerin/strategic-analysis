@@ -1,9 +1,15 @@
-Function,Count
+Obj,Count
 Amplification,2
+Coordination,2
 Data Transmission,32
-Detection,35
-Navigation,7
-Communication,105
-Monitoring,15
-Identification,6
+Satellite navigation,28
 Real-time Communication,8
+Full-duplex Communication,4
+RFID,3
+Multi-target Tracking,2
+Noise Measurement,37
+Power Measurements,29
+Automotive Radar Testing Systems,20
+Spectrum Analyzers for Interference Detection,5
+RF Filtering and Impedance Matching,13
+Detection and classification of mines,6
